@@ -5,6 +5,7 @@ template.innerHTML = /*html*/`
 
     :host {
       display: flex;
+      justify-content: center;
       position: relative;
       width: 100%;
       height: 100%;
@@ -44,6 +45,7 @@ template.innerHTML = /*html*/`
 
     img {
       width: 100%;
+      max-height: 60vh;
     }
 
 
@@ -59,6 +61,12 @@ template.innerHTML = /*html*/`
 `
 
 export class GetyourPictureSlider extends HTMLElement {
+
+  connectedCallback() {
+    const picture = this.shadowRoot.querySelector(".picture")
+    picture.append(this.children[0])
+  }
+
   constructor() {
     super()
     this.attachShadow({ mode: "open" })
@@ -70,8 +78,6 @@ export class GetyourPictureSlider extends HTMLElement {
     const picture = this.shadowRoot.querySelector(".picture")
 
     let position = 0
-
-    picture.append(this.children[position])
 
     leftButton.addEventListener("click", () => {
       picture.innerHTML = ""
