@@ -19,7 +19,7 @@ template.innerHTML = /*html*/`
       width: 20vw;
       height: 100%;
       cursor: pointer;
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.3);
       transition: transform 1s;
       overflow: hidden;
       z-index: 1;
@@ -43,12 +43,7 @@ template.innerHTML = /*html*/`
     }
 
     img {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      margin: auto;
+      width: 100%;
     }
 
 
@@ -76,30 +71,28 @@ export class GetyourPictureSlider extends HTMLElement {
 
     let position = 0
 
-    const images = this.children
-
-    picture.append(images[position].cloneNode())
+    picture.append(this.children[position])
 
     leftButton.addEventListener("click", () => {
       picture.innerHTML = ""
       if (position === 0) {
-        position = images.length - 1
-        picture.append(images[position].cloneNode())
+        position = this.children.length - 1
+        picture.append(this.children[position].cloneNode())
       } else {
         position = position - 1
-        picture.append(images[position].cloneNode())
+        picture.append(this.children[position].cloneNode())
 
       }
     })
 
     rightButton.addEventListener("click", () => {
       picture.innerHTML = ""
-      if (position === images.length - 1) {
+      if (position === this.children.length - 1) {
         position = 0
-        picture.append(images[position].cloneNode())
+        picture.append(this.children[position].cloneNode())
       } else {
         position = position + 1
-        picture.append(images[position].cloneNode())
+        picture.append(this.children[position].cloneNode())
       }
     })
   }
